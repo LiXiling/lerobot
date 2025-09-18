@@ -19,14 +19,18 @@
     title: Train RL in Simulation
   - local: async
     title: Use Async Inference
+  - local: porting_datasets_v3
+    title: Porting Large Datasets
   title: "Tutorials"
 - sections:
   - local: smolvla
-    title: Finetune SmolVLA
+    title: SmolVLA
+  - local: pi0
+    title: π₀ (Pi0)
+  - local: pi05
+    title: π₀.₅ (Pi05)
   title: "Policies"
 - sections:
-  - local: hope_jr
-    title: Hope Jr
   - local: so101
     title: SO-101
   - local: so100
@@ -35,6 +39,8 @@
     title: Koch v1.1
   - local: lekiwi
     title: LeKiwi
+  - local: hope_jr
+    title: Hope Jr
   - local: reachy2
     title: Reachy 2
   title: "Robots"
