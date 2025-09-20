@@ -17,7 +17,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F  # noqa: N812
 
-from lerobot.constants import OBS_ENV, OBS_ROBOT
+from lerobot.constants import OBS_ENV_STATE, OBS_STATE
 from lerobot.policies.diffusion.modeling_diffusion import DiffusionRgbEncoder
 from lerobot.policies.dit_flow.configuration_dit_flow import DiTFlowConfig
 from lerobot.policies.normalize import Normalize, Unnormalize
@@ -478,8 +478,8 @@ class DiTFlowModel(nn.Module):
 
     def _prepare_global_conditioning(self, batch: dict[str, torch.Tensor]) -> torch.Tensor:
         """Encode image features and concatenate them all together along with the state vector."""
-        batch_size, n_obs_steps = batch[OBS_ROBOT].shape[:2]
-        global_cond_feats = [batch[OBS_ROBOT]]
+        batch_size, n_obs_steps = batch[OBS_STATE].shape[:2]
+        global_cond_feats = [batch[OBS_STATE]]
         # Extract image features.
         if self.config.image_features:
             if self.config.use_separate_rgb_encoder_per_camera:
@@ -509,7 +509,7 @@ class DiTFlowModel(nn.Module):
             global_cond_feats.append(img_features)
 
         if self.config.env_state_feature:
-            global_cond_feats.append(batch[OBS_ENV])
+            global_cond_feats.append(batch[OBS_ENV_STATE])
 
         # Concatenate features then flatten to (B, global_cond_dim).
         return torch.cat(global_cond_feats, dim=-1).flatten(start_dim=1)
