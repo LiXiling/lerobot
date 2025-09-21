@@ -113,7 +113,7 @@ class DiTFlowConfig(PreTrainedConfig):
     # Architecture / modeling.
     # Vision backbone.
     vision_backbone: str = "resnet34"
-    crop_shape: tuple[int, int] | None = (84, 84)
+    crop_shape: tuple[int, int] | None = (224, 224)
     crop_is_random: bool = False
     pretrained_backbone_weights: str | None = None
     use_group_norm: bool = True

@@ -99,7 +99,7 @@ class _ZeroScaleMod(nn.Module):
 
 
 class _DiTDecoder(nn.Module):
-    def __init__(self, d_model=256, nhead=6, dim_feedforward=2048, dropout=0.5, activation="gelu"):
+    def __init__(self, d_model=256, nhead=6, dim_feedforward=2048, dropout=0.0, activation="gelu"):
         super().__init__()
         self.self_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         # Implementation of Feedforward model
